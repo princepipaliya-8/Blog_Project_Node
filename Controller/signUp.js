@@ -3,7 +3,10 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const signUpHost = (req, res) => {
-  res.render("signUp");
+  req.flash("success", "Sign Up Successful");
+  res.render("signUp", {
+    success: req.flash("success"),
+  });
 };
 
 const signUpPage = async (req, res) => {

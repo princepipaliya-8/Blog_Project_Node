@@ -3,6 +3,8 @@ const controller = require("../Controller/controller");
 const signIncontroller = require("../Controller/signIn");
 const signUpcontroller = require("../Controller/signUp");
 const blogcontroller = require("../Controller/blog");
+const passwordCghange = require("../Controller/passwordChange");
+const forgetPass = require("../Controller/forgetPass");
 const logout = require("../Controller/logout");
 const images = require("../middleWere/multer");
 const passport = require("../middleWere/passport");
@@ -24,6 +26,7 @@ routes.get("/signUp", signUpcontroller.signUpHost);
 routes.post("/register", signUpcontroller.signUpPage);
 
 routes.get("/blogs", auth, blogcontroller.blogHost);
+routes.get("/my-blogs", blogcontroller.myBlogs);
 routes.get("/blogs/add", auth, blogcontroller.blogsPage);
 routes.post("/blog/add", images.single("bImage"), blogcontroller.blogPage);
 routes.get("/blogs/edit/:id", auth, blogcontroller.editBlog);
@@ -32,6 +35,15 @@ routes.post(
   images.single("bImage"),
   blogcontroller.blogUpdate
 );
-
 routes.get("/blogs/delete/:id", auth, blogcontroller.blogsDelete);
+routes.get("/passwordChange", passwordCghange.pwdChange);
+routes.post("/changePwd", passwordCghange.pwdChangePost);
+
+routes.get("/forgetPass/:id", forgetPass.forgetPass);
+routes.get("/verifyEmail/:id", forgetPass.verifyEmail);
+routes.post("/verifyEmailPost/:id", forgetPass.verifyEmailPost);
+routes.get("/verify/:id", forgetPass.verify);
+routes.post("/verifyOTP/:id", forgetPass.verifyOTP);
+routes.post("/pwdChange/:id", forgetPass.changePWD);
+
 module.exports = routes;

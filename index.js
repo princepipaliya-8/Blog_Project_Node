@@ -5,6 +5,7 @@ const routes = require("./Routes/routes");
 const dataBase = require("./Modal/mongooes/mongooes");
 const passport = require("./middleWere/passport");
 const expressSession = require("express-session");
+const flash = require("connect-flash");
 
 const app = express();
 const PORT = 2020;
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(drName));
 app.use("/upload", express.static(path.join(__dirname, "/upload")));
+app.use(flash());
 
 app.use("/", routes);
 

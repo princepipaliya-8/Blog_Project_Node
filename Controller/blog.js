@@ -11,6 +11,11 @@ const blogHost = async (req, res) => {
 const blogsPage = (req, res) => {
   res.render("blogForm");
 };
+
+const myBlogs = async (req, res) => {
+  const data = await blogModal.find();
+  res.render("myBlog", { data });
+};
 const blogPage = async (req, res) => {
   const obj = new blogModal({
     Title: req.body.Title,
@@ -67,4 +72,5 @@ module.exports = {
   editBlog,
   blogUpdate,
   blogsDelete,
+  myBlogs,
 };

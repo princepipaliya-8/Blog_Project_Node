@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { type } = require("os");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/blogData")
@@ -17,6 +18,9 @@ const userData = new mongoose.Schema({
   password: {
     type: String,
     require: true,
+  },
+  tokenReset: {
+    type: String,
   },
   Title: {
     type: String,
