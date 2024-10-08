@@ -45,5 +45,7 @@ routes.post("/verifyEmailPost/:id", forgetPass.verifyEmailPost);
 routes.get("/verify/:id", forgetPass.verify);
 routes.post("/verifyOTP/:id", forgetPass.verifyOTP);
 routes.post("/pwdChange/:id", forgetPass.changePWD);
+routes.get("/addTitle", controller.addTitle);
+routes.post("/titleAdded", controller.titleAdded);
 
 module.exports = routes;

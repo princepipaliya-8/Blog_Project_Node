@@ -41,10 +41,17 @@
       rel="stylesheet"
     />
     <!-- CSS Files -->
+
     <link
       id="pagestyle"
       href="./soft-ui-dashboard-main/assets/css/soft-ui-dashboard.css?v=1.0.7"
       rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
     />
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
@@ -56,58 +63,52 @@
   </head>
 
   <body class="">
-    <% if(success){%> <
-    <div
-      id="alert-3"
-      class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-      role="alert"
-    >
-      <svg
-        class="flex-shrink-0 w-4 h-4"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 20 20"
+    <main class="main-content mt-0">
+      <% if (welcome) { %>
+
+      <div
+        class="alert"
+        id="demo"
+        style="
+          width: 325px;
+          background-color: whitesmoke;
+          border: 1px solid #f09bff;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 2%;
+          z-index: 999999;
+          display: flex;
+          align-items: center;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: #ab21af;
+        "
+        role="alert"
       >
-        <path
-          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-        />
-      </svg>
-      <span class="sr-only">Info</span>
-      <div class="ms-3 text-sm font-medium">
-        A simple info alert with an
-        <a href="#" class="font-semibold underline hover:no-underline"
-          >example link</a
-        >. Give it a click if you like.
-      </div>
-      <button
-        type="button"
-        class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
-        data-dismiss-target="#alert-3"
-        aria-label="Close"
-      >
-        <span class="sr-only">Close</span>
         <svg
-          class="w-3 h-3"
-          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 14"
+          width="18"
+          height="18"
+          fill="#DB1594"
+          class="bi bi-patch-check-fill"
+          viewBox="0 0 16 16"
+          style="margin-right: 10px"
         >
           <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-          />
-        </svg>
-      </button>
-    </div>
+            d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708"
+          /></svg
+        ><%= welcome %>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+          style="font-size: 12px; margin-left: 45px; color: #8327c4"
+        ></button>
+      </div>
 
-    <%}%>
-
-    <main class="main-content mt-0">
+      <%}%>
       <section class="min-vh-100 mb-8">
         <div
           class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
@@ -360,5 +361,17 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="./soft-ui-dashboard-main/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+      setTimeout(function () {
+        $("#demo").fadeOut("fast");
+      }, 2500);
+    </script>
   </body>
 </html>

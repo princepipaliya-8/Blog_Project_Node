@@ -94,9 +94,11 @@ const verify = async (req, res) => {
         res.render("verify", { id: req.params.id });
       } else {
         console.log("invalid token");
+        res.render("404");
       }
     } else {
       console.log("invalid token");
+      res.render("404");
     }
   } catch (err) {
     console.log("err", err);
@@ -131,8 +133,8 @@ const changePWD = async (req, res) => {
       try {
         const pwd = await modal.updateOne(
           { _id: req.params.id },
-          { password: hashedPassword },
-          { tokenReset: null }
+          { password: hashedPassword, tokenReset: null },
+          { new: true }
         );
         console.log("Password updated", pwd);
         res.redirect("/signIn");

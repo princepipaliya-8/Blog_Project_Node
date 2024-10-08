@@ -2,7 +2,10 @@ const blogModal = require("../Modal/mongooes/mongooes");
 const bcrypt = require("bcrypt");
 
 const signInHost = (req, res) => {
-  res.render("signIn");
+  req.flash("welcome", "Welcome To Login Page");
+  res.render("signIn", {
+    welcome: req.flash("welcome"),
+  });
 };
 const signInPage = async (req, res) => {
   const user = await blogModal.find({ email: req.body.email });
@@ -14,6 +17,7 @@ const signInPage = async (req, res) => {
     bcrypt.compare(req.body.password, user[0].password, function (err, result) {
       console.log(err, result);
       if (result) {
+        req.flash("welcome", "Welcome To Dashboard");
         res.redirect("/");
       } else {
         res.redirect("/signIn");
