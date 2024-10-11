@@ -9,13 +9,9 @@ const signInHost = (req, res) => {
 };
 const signInPage = async (req, res) => {
   const user = await blogModal.find({ email: req.body.email });
-  console.log(user);
 
   if (user.length > 0) {
-    console.log("req", req.body, user[0].password);
-
     bcrypt.compare(req.body.password, user[0].password, function (err, result) {
-      console.log(err, result);
       if (result) {
         req.flash("welcome", "Welcome To Dashboard");
         res.redirect("/");

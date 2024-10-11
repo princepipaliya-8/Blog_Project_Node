@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const TitleData = new mongoose.Schema({
-  titlee: {
+  content: {
     type: String,
     require: true,
   },
-  content: {
+  entry: {
     type: String,
     require: true,
   },

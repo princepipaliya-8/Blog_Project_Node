@@ -1,5 +1,6 @@
 const modal = require("../Modal/mongooes/mongooes");
 const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 let otp = null;
 
@@ -27,6 +28,7 @@ const pwdChangePost = (req, res) => {
           }
           try {
             const pwd = await modal.updateOne(
+              { _id: req.params.id },
               { email: req.user.email },
               { password: hashedPassword }
             );
