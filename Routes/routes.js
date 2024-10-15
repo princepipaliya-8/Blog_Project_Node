@@ -50,5 +50,7 @@ routes.post("/titleAdded", controller.titleAdded);
 routes.get("/deleteTitle/:id", controller.deleteTitle);
 routes.get("/subTitle", controller.subTitle);
 routes.post("/subTitleAdded", controller.subTitlePost);
+routes.get("/subTitleView", controller.subTitleView);
+routes.post("/comments", blogcontroller.commentBlog);
 
 module.exports = routes;

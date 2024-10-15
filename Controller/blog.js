@@ -1,4 +1,5 @@
 const blogModal = require("../Modal/mongooes/blogData");
+const commentBlogData = require("../Modal/mongooes/comment");
 const fs = require("fs");
 
 const blogHost = async (req, res) => {
@@ -13,8 +14,11 @@ const blogsPage = (req, res) => {
 };
 
 const myBlogs = async (req, res) => {
+  const commentData = await commentBlogData.find({}).populate("user");
+  console.log("commentData", commentData);
+
   const data = await blogModal.find();
-  res.render("myBlog", { data });
+  res.render("myBlog", { data, commentData });
 };
 const blogPage = async (req, res) => {
   const obj = new blogModal({
@@ -65,6 +69,26 @@ const blogsDelete = async (req, res) => {
 
   res.redirect("/blogs");
 };
+const commentBlog = async (req, res) => {
+  try {
+    const obj = new commentBlogData({
+      comment: req.body.comment,
+      user: req.user._id,
+    });
+
+    console.log("Body Is", obj);
+    const blog = new commentBlogData(obj);
+
+    await blog.save();
+    res.redirect("/my-blogs");
+    console.log("blog", blog);
+    const blogd = await commentBlogData.find({}).populate("blog");
+    console.log("blogd", blogd);
+  } catch {
+    res.redirect("/blogs/add");
+    console.log("error");
+  }
+};
 module.exports = {
   blogHost,
   blogsPage,
@@ -73,4 +97,5 @@ module.exports = {
   blogUpdate,
   blogsDelete,
   myBlogs,
+  commentBlog,
 };

@@ -88,30 +88,6 @@
           </svg>
         </div>
       </a>
-      <div
-        class="box"
-        style="position: absolute; top: 30%; right: 20%; z-index: 999"
-      >
-        <a href="#jayHooo">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="#ffffff"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
-            width="24"
-            height="24"
-            style="color: white"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-            />
-          </svg>
-        </a>
-      </div>
       <section class="min-vh-100 mb-8">
         <div
           class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
@@ -124,10 +100,6 @@
             <div class="row justify-content-center">
               <div class="col-lg-5 text-center mx-auto">
                 <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-                <p class="text-lead text-white">
-                  Use these awesome forms to login or create new account in your
-                  project for free.
-                </p>
               </div>
             </div>
           </div>
@@ -156,20 +128,10 @@
                       />
                     </div>
                     <div class="mb-3">
-                      <!-- <textarea
-                        name="des"
-                        id="des"
-                        placeholder="Description"
-                        rows="4"
-                        class="form-control"
-                      ></textarea> -->
-                      <select class="form-control">
+                      <select class="form-control" name="subentry">
                         <% topic.forEach((topic) => { %>
                         <option value="<%=topic._id%>"><%=topic.entry%></option>
                         <% }); %>
-                        <!-- <option value="Movie">Movie</option>
-                        <option value="Movie">T.V</option>
-                        <option value="Movie">Mobile</option> -->
                       </select>
                     </div>
                     <div class="text-center">
@@ -187,7 +149,6 @@
           </div>
         </div>
       </section>
-      <% subTopic.forEach((subTopic) => { %> <%=subTopic.title%> <% }); %>
     </main>
     <!--   Core JS Files   -->
     <script src="./soft-ui-dashboard-main/assets/js/core/popper.min.js"></script>

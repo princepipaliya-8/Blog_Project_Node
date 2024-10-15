@@ -7,7 +7,7 @@ const subTitleData = new mongoose.Schema({
   },
   topic: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "titledatas",
+    ref: "TitleData",
     require: true,
   },
 });

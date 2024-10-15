@@ -54,8 +54,6 @@ const subTitle = async (req, res) => {
   try {
     const topic = await titleModal.find({});
     const subTopic = await subTitleModal.find({}).populate("topic");
-    console.log("Topic", topic);
-    console.log("subTopic", subTopic);
 
     res.render("subTitle", { topic, subTopic });
   } catch (error) {
@@ -63,15 +61,26 @@ const subTitle = async (req, res) => {
   }
 };
 const subTitlePost = async (req, res) => {
-  res.send("JAy Hooo");
-  // const subTitle = new subTitleModal({
-  //   title: req.body.titlee,
-  // });
+  try {
+    const obj = new subTitleModal({
+      title: req.body.titlee,
+      topic: req.body.subentry,
+    });
+    console.log("obj", obj);
+    const subTopic = new subTitleModal(obj);
+    await subTopic.save();
+    res.redirect("/subTitleView");
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+const subTitleView = async (req, res) => {
+  const topic = await titleModal.find({});
+  const subTopic = await subTitleModal.find({}).populate("topic");
+  console.log("Topic", topic);
+  console.log("subTopic", subTopic);
 
-  // const data = await subTitle.save();
-
-  // console.log("data", data);
-  // console.log("sTitle", subTitle);
+  res.render("subtopicView", { topic, subTopic });
 };
 module.exports = {
   defaultHost,
@@ -81,4 +90,5 @@ module.exports = {
   deleteTitle,
   subTitle,
   subTitlePost,
+  subTitleView,
 };
