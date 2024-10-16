@@ -26,9 +26,9 @@ routes.get("/signUp", signUpcontroller.signUpHost);
 routes.post("/register", signUpcontroller.signUpPage);
 
 routes.get("/blogs", auth, blogcontroller.blogHost);
+routes.post("/blog/add", images.single("bImage"), blogcontroller.blogPage);
 routes.get("/my-blogs", blogcontroller.myBlogs);
 routes.get("/blogs/add", auth, blogcontroller.blogsPage);
-routes.post("/blog/add", images.single("bImage"), blogcontroller.blogPage);
 routes.get("/blogs/edit/:id", auth, blogcontroller.editBlog);
 routes.post(
   "/updateBlog/:id",

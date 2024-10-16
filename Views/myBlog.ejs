@@ -582,11 +582,12 @@
                           <%= blogData.content %>
                         </p>
                         <form action="/comments" method="post" style="position: relative;">
+                          <input type="hidden" name="blogId" value="<%= blogData._id %>">
                           <input type="text" class="form-control" placeholder="Comment" name="comment" >
                           <button type="submit" class="btn btn-outline-primary btn-sm mb-0" style="position: absolute; top: 0; right: 0; height: 40.4px; background-color: white;">Comment</button>
                         </form>
 
-                        <% commentData.forEach((blogData)=>{ %>
+                        <!-- <% commentData.forEach((blogData)=>{ %>
                           <div class="box" style="display: flex; justify-content: space-between;">
 
                             <h2>
@@ -598,7 +599,19 @@
   
                             </h2>
                           </div>
-                        <% })%>
+                        <% })%> -->
+                        <% if(commentData.length > 0){ %>
+                          <h4 class="mb-3"> Comments :</h4>
+                          <% commentData.forEach((comment) => { %>
+                            <div class="mb-1">
+                              <% if(comment.blog._id.toString() === blogData._id.toString()){ %>
+                                <h5 class="m-0" style="font-size: 13px;">Comment : <%= comment.comment %></h5>
+                                <span style="font-size: 13px;">Commeted by <%= comment.user.name %></span>
+                              <% } %>
+                            </div>
+                          <%})%>
+                        <% } %>
+                        
                       </div>
                     </div>
                   </div>

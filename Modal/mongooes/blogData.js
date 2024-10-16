@@ -17,6 +17,11 @@ const blogData = new mongoose.Schema({
     type: String,
     require: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userData",
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("BlogData", blogData);
