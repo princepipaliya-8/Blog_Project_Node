@@ -4,6 +4,7 @@ const logout = (req, res, next) => {
       next();
     }
   });
+  req.flash("logout", "Logout Successfully");
   res.redirect("/signIn");
 };
 

@@ -4,25 +4,28 @@ const titleModal = require("../Modal/mongooes/title");
 const subTitleModal = require("../Modal/mongooes/subTitle");
 const defaultHost = async (req, res) => {
   if (req.isAuthenticated()) {
+    req.flash("dash", "Welcome To Dashbord");
     res.render("admin", {
       name: req.user.name,
       email: req.user.email,
       welcome: req.flash("welcome"),
+      dash: req.flash("dash"),
     });
   } else {
+    req.flash("pwdWrong", "Authentication Failed");
     res.redirect("/signIn");
   }
 };
 const profile = async (req, res) => {
   console.log("reqwecd", req.user);
-
-  res.render("profile", { name: req.user.name, email: req.user.email });
+  req.flash("welcome", "Welcome To Profile Page");
+  res.render("profile", { name: req.user.name, email: req.user.email, welcome: req.flash("welcome") });
 };
 const addTitle = async (req, res) => {
   const data = await titleModal.find({});
   console.log("data", data);
-
-  res.render("addTitle", { data });
+  req.flash("welcome", "Welcome To Add Title Page");
+  res.render("addTitle", { data, welcome: req.flash("welcome") });
 };
 const titleAdded = async (req, res) => {
   console.log("req", req.body);
@@ -30,12 +33,14 @@ const titleAdded = async (req, res) => {
   const obj = new titleModal({
     entry: req.body.titlee,
     content: req.body.des,
+    userId: req.user._id,
   });
+  console.log("obbjjjj", obj);
 
   try {
     const TitleData = new titleModal(obj);
     await TitleData.save();
-    res.redirect("/addTitle");
+    res.redirect("/subTitle");
   } catch (error) {
     console.log("error");
   }
@@ -49,13 +54,15 @@ const deleteTitle = async (req, res) => {
   res.redirect("/addTitle");
 };
 const subTitle = async (req, res) => {
-  // console.log("data", data.title);
-
   try {
     const topic = await titleModal.find({});
-    const subTopic = await subTitleModal.find({}).populate("topic");
+    console.log("topic", topic);
 
-    res.render("subTitle", { topic, subTopic });
+    const subTopic = await subTitleModal.find({}).populate("topic");
+    console.log("subTopic", subTopic);
+
+    req.flash("welcome", "Welcome To Add SubTitle Page");
+    res.render("subTitle", { topic, subTopic, welcome: req.flash("welcome") });
   } catch (error) {
     console.log("error", error);
   }
@@ -80,7 +87,9 @@ const subTitleView = async (req, res) => {
   console.log("Topic", topic);
   console.log("subTopic", subTopic);
 
-  res.render("subtopicView", { topic, subTopic });
+  req.flash("welcome", "Welcome To All Title Page");
+
+  res.render("subtopicView", { topic, subTopic, welcome: req.flash("welcome") });
 };
 module.exports = {
   defaultHost,

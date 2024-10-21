@@ -1,13 +1,20 @@
-const { log } = require("console");
 const blogModal = require("../Modal/mongooes/blogData");
 const commentBlogData = require("../Modal/mongooes/comment");
+const modal = require("../Modal/mongooes/mongooes")
 const fs = require("fs");
 
 const blogHost = async (req, res) => {
-  const data = await blogModal.find();
+  console.log("req.body", req.user);
+  const user = await modal.find({ bName: req.body.UName });
+  console.log("user", user);
+
+
+  const data = await blogModal.find({}).populate("userId");
+  console.log("data", data);
 
   if (data) {
-    res.render("blogs", { data, user: req.user });
+    req.flash("welcome", "Welcome To  Blogs Page");
+    res.render("blogs", { data, user, welcome: req.flash("welcome") });
   }
 };
 
@@ -24,18 +31,19 @@ const myBlogs = async (req, res) => {
   console.log("commentData", commentData);
 
   const data = await blogModal.find();
-  res.render("myBlog", { data, commentData });
+  req.flash("welcome", "Welcome To All Blogs Page");
+  res.render("myBlog", { data, commentData, welcome: req.flash("welcome") });
 };
 const blogPage = async (req, res) => {
   const obj = new blogModal({
     Title: req.body.Title,
     path: req.file.path,
     content: req.body.content,
-    bName: req.body.bName,
+    bName: req.body.UName,
     userId: req.user._id,
   });
 
-  console.log("Body Is", obj);
+  console.log("Body Isssss", obj);
 
   try {
     const blog = await obj.save();

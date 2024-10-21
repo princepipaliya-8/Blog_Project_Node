@@ -5,6 +5,10 @@ const blogData = new mongoose.Schema({
     type: String,
     require: true,
   },
+  userName: {
+    type: String,
+    require: true,
+  },
   path: {
     type: String,
     require: true,

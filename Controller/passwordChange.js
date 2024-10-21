@@ -22,21 +22,16 @@ const pwdChangePost = (req, res) => {
       if (newPassword === conPassword) {
         console.log("Password match");
         bcrypt.hash(newPassword, saltRounds, async (err, hashedPassword) => {
-          if (err) {
-            console.log("Error hashing password:", err);
-            return res.redirect("/passwordChange");
-          }
-          try {
+          if (!err) {
             const pwd = await modal.updateOne(
-              { _id: req.params.id },
-              { email: req.user.email },
+              { _id: req.params.id }, // Filter by the user ID
               { password: hashedPassword }
             );
             console.log("Password updated", pwd);
             res.redirect("/signIn");
-          } catch (error) {
-            console.log("Error updating password:", error);
-            res.redirect("/passwordChange");
+          } else {
+            console.log("Error hashing password:", err);
+            return res.redirect("/passwordChange");
           }
         });
       } else {

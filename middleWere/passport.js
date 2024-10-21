@@ -12,15 +12,20 @@ passport.use(
         bcrypt.compare(password, userData.password, async (err, result) => {
           if (err) {
             done(null, false);
+
           }
 
           if (result) {
             done(null, userData);
           } else {
+            console.log("pwd Failed");
+
             done(null, false);
           }
         });
       } else {
+        console.log("pwd Faileddd");
+
         done(null, false);
       }
     }
